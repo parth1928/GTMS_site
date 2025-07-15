@@ -1,7 +1,10 @@
 import react from "@vitejs/plugin-react";
-import "dotenv/config";
+import * as dotenv from 'dotenv';
 import path from "node:path";
 import { defineConfig, splitVendorChunkPlugin } from "vite";
+
+// Load environment variables
+dotenv.config();
 import injectHTML from "vite-plugin-html-inject";
 import tsConfigPaths from "vite-tsconfig-paths";
 
@@ -82,11 +85,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			resolve: {
-				alias: {
-					"@": path.resolve(__dirname, "./src"),
-				},
-			},
+			"@": path.resolve(__dirname, "./src"),
 		},
 	},
 });
