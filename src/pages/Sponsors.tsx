@@ -36,59 +36,61 @@ const Sponsors = () => {
       <Header />
       <div className="min-h-screen bg-black">
         {/* Hero Section */}
-        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden py-20 sm:py-24">
           <div 
-            className="absolute inset-0 bg-contain bg-no-repeat bg-center"
+            className="absolute inset-0 bg-cover bg-center"
             style={{ 
               backgroundImage: 'url("/images_home_page/1751911822000-610-467423983_1638079047141730_5515608627569552858_n.png")',
               filter: 'brightness(0.9)'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
-          <div className="relative z-10 text-center text-white">
-            <h1 className="text-6xl font-extrabold tracking-tight uppercase font-orbitron mb-4">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black" />
+          <div className="relative z-10 text-center text-white px-4 sm:px-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight uppercase font-orbitron mb-3 sm:mb-4">
               Our Sponsors
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 font-outfit max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 font-outfit max-w-2xl mx-auto">
               Partners who have supported our journey in Formula Student racing
             </p>
           </div>
         </section>
 
         {/* Current Sponsors Section */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white font-orbitron mb-4">Previous & Current Sponsors</h2>
-            <p className="text-lg text-gray-300 font-outfit max-w-3xl mx-auto">
+        <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white font-orbitron mb-3 sm:mb-4">
+              Previous & Current Sponsors
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 font-outfit max-w-3xl mx-auto px-4">
               We are grateful for the support and trust of these industry leaders who have been instrumental in our success.
             </p>
           </div>
 
           {/* Sponsors Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 mt-8 sm:mt-12">
             {sponsorLogos.map((sponsor, index) => (
               <motion.div
                 key={sponsor.name}
-                className="relative group cursor-pointer bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="relative group cursor-pointer bg-white rounded-lg sm:rounded-xl p-2 sm:p-4 md:p-6 shadow-md hover:shadow-xl transition-shadow duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.5, delay: Math.min(index * 0.1, 1.5) }}
+                whileHover={{ scale: 1.02 }}
               >
-                <div className="relative aspect-[3/2] flex items-center justify-center p-4">
+                <div className="relative aspect-[3/2] flex items-center justify-center p-2 sm:p-3 md:p-4">
                   <img
                     src={sponsor.logo}
                     alt={`${sponsor.name} logo`}
-                    className="max-w-full max-h-full object-contain transition-all duration-300"
+                    className="w-auto h-auto max-h-[40px] sm:max-h-[50px] md:max-h-[60px] object-contain transition-all duration-300"
                   />
                   <motion.div
-                    className="absolute inset-0 border-2 border-orange-500 rounded-xl opacity-0 group-hover:opacity-100 shadow-[0_0_15px_rgba(249,115,22,0.2)] group-hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+                    className="absolute inset-0 border border-orange-500/50 sm:border-2 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 shadow-[0_0_10px_rgba(249,115,22,0.1)] group-hover:shadow-[0_0_15px_rgba(249,115,22,0.2)]"
                     initial={{ scale: 1.1 }}
                     whileHover={{ scale: 1 }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
-                <h3 className="text-gray-900 text-center mt-4 font-outfit font-medium">{sponsor.name}</h3>
+                <h3 className="text-gray-900 text-center mt-2 sm:mt-3 md:mt-4 font-outfit font-medium text-xs sm:text-sm md:text-base truncate px-2">{sponsor.name}</h3>
               </motion.div>
             ))}
           </div>

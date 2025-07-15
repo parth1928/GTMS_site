@@ -154,7 +154,7 @@ const AchievementsTimeline = () => {
         <div className="relative mx-4 md:mx-auto max-w-4xl">
           {/* Timeline line with scroll-based animation */}
           <div
-            className="absolute left-1/2 top-0 h-full w-1.5 bg-gradient-to-b from-orange-500 via-orange-500 to-orange-400 -translate-x-1/2"
+            className="absolute left-1/2 top-0 h-full w-0.5 md:w-1.5 bg-gradient-to-b from-orange-500 via-orange-500 to-orange-400 -translate-x-1/2"
             style={{ transformOrigin: "top" }}
           />
 
@@ -173,13 +173,13 @@ const AchievementsTimeline = () => {
                   isLeft ? "md:flex-row" : "md:flex-row-reverse"
                 } flex-col`}
               >
-                {/* Timeline dot, scroll-animated and perfectly centered */}
+                {/* Timeline dot, scroll-animated and perfectly centered - hidden on mobile */}
                 <motion.div
-                  className="absolute top-0 w-4 h-4 bg-orange-500 rounded-full z-10"
+                  className="absolute top-0 hidden md:block w-4 h-4 bg-orange-500 rounded-full z-10"
                   style={{ top: "calc(50% - 0.5rem)", left: "calc(50% - 7.2px)" }}
                 >
                   <motion.div
-                    animate={{ scale: 1 }}
+                    animate={{ scale: 1.5 }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute w-full h-full bg-orange-500 rounded-full opacity-30"
                   />
