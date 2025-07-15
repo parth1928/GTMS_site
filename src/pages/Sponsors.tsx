@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import SponsorshipForm from "components/SponsorshipForm";
 
 const Sponsors = () => {
   // Get all sponsor logos from the logos folder
@@ -93,25 +94,7 @@ const Sponsors = () => {
           </div>
         </section>
 
-        {/* Call to Action Section */}
-        <section className="relative py-24 overflow-hidden bg-black">
-          <div className="absolute inset-0 bg-black" />
-          <div className="relative z-10 container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold text-white font-orbitron mb-6">
-              Become a Sponsor
-            </h2>
-            <p className="text-lg text-gray-300 font-outfit max-w-2xl mx-auto mb-8">
-              Join us in our pursuit of engineering excellence and innovation. Partner with GTU Motorsports and be part of our journey to success.
-            </p>
-            <motion.button
-              className="px-8 py-4 text-lg font-bold text-white uppercase bg-orange-600 rounded-none hover:bg-orange-500 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contact Us
-            </motion.button>
-          </div>
-        </section>
+        <SponsorshipForm />
       </div>
       <Footer />
     </>
