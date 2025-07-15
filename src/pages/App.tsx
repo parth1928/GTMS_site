@@ -111,12 +111,8 @@ const Home = () => {
               />
             </div>
             <div className="text-center text-white px-4 sm:px-8">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight uppercase font-orbitron break-words sm:whitespace-nowrap relative">
-                <span className="relative sm:static">
-                  {/* Mobile-only backdrop blur */}
-                  <span className="absolute inset-0 -m-1 bg-black/30 backdrop-blur-sm sm:hidden" />
-                  NO WINGS. NO WORRIES.
-                </span>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight uppercase font-orbitron break-words sm:whitespace-nowrap">
+                NO WINGS. NO WORRIES.
               </h1>
             </div>
           </div>
