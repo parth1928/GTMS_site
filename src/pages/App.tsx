@@ -90,46 +90,47 @@ const Home = () => {
         })}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         {/* Logo Section */}
-        <div className="absolute z-20 w-full h-full flex flex-col items-center">
-          <div className="relative group mt-4">
-            {/* Subtle radial gradient background */}
-            <div 
-              className="absolute inset-0 -m-8 opacity-20 blur-xl"
-              style={{
-                background: "radial-gradient(circle at center, white 0%, transparent 70%)",
-              }}
-            />
-            <img
-              src={logoUrl}
-              alt="GTU Motorsports Logo"
-              className="w-[450px] h-auto relative"
-              style={{
-                filter: "brightness(1.1)",
-              }}
-            />
-          </div>
-          <div className="absolute bottom-[32rem] px-8 py-12 max-w-7xl mx-auto text-center text-white">
-            <div>
-              <h1 className="text-8xl font-extrabold tracking-tight uppercase font-orbitron whitespace-nowrap">
+        <div className="absolute z-20 w-full h-full flex flex-col items-center justify-start pt-8 sm:pt-12">
+          {/* Logo and Tagline Container */}
+          <div className="flex flex-col items-center gap-4 sm:gap-8">
+            <div className="relative group">
+              {/* Subtle radial gradient background */}
+              <div 
+                className="absolute inset-0 -m-4 sm:-m-8 opacity-20 blur-xl"
+                style={{
+                  background: "radial-gradient(circle at center, white 0%, transparent 70%)",
+                }}
+              />
+              <img
+                src={logoUrl}
+                alt="GTU Motorsports Logo"
+                className="w-[200px] sm:w-[300px] md:w-[350px] lg:w-[450px] h-auto relative"
+                style={{
+                  filter: "brightness(1.1)",
+                }}
+              />
+            </div>
+            <div className="text-center text-white px-4 sm:px-8">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight uppercase font-orbitron break-words sm:whitespace-nowrap">
                 NO WINGS. NO WORRIES.
               </h1>
             </div>
           </div>
-          <div className="absolute bottom-8 px-8 py-12 max-w-7xl mx-auto text-center text-white">
+          <div className="absolute bottom-4 sm:bottom-8 px-4 sm:px-8 py-6 sm:py-12 max-w-7xl mx-auto text-center text-white">
             <div>
-              <p className="max-w-2xl mx-auto text-lg md:text-xl text-white font-outfit leading-relaxed">
+              <p className="max-w-2xl mx-auto text-sm sm:text-lg md:text-xl text-white font-outfit leading-relaxed">
                 We are GTU Motorsports — National Champions and ranked Top 50 globally in Formula Student. Built by passion. Backed by engineering. Racing since 2015.
               </p>
-              <div className="flex flex-col mt-12 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center w-full">
+              <div className="flex flex-col mt-6 sm:mt-12 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center w-full">
                 <motion.a 
                   href="#contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-[250px]"
+                  className="w-full sm:w-[250px]"
                 >
                   <Button
                     size="lg"
-                    className="w-full px-8 py-6 text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 rounded-none hover:bg-orange-500 hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] transform-gpu"
+                    className="w-full px-4 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 rounded-none hover:bg-orange-500 hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] transform-gpu"
                   >
                     Become a Sponsor
                   </Button>
@@ -137,7 +138,7 @@ const Home = () => {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-[250px]"
+                  className="w-full sm:w-[250px]"
                 >
                   <Button
                     size="lg"
