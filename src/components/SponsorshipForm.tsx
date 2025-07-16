@@ -24,7 +24,8 @@ const SponsorshipForm = () => {
             </h2>
             <motion.a
               href="/brochure/GTU_Motorsports_Sponsorship_2025.pdf"
-              download
+              download="GTU_Motorsports_Sponsorship_2025.pdf"
+              type="application/pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600/10 border border-orange-500 text-orange-500 hover:bg-orange-600 hover:text-white transition-all duration-300 rounded-lg font-outfit whitespace-nowrap"
@@ -66,7 +67,7 @@ const SponsorshipForm = () => {
             method="POST" 
             className="space-y-6"
           >
-            <input type="hidden" name="_next" value="http://localhost:5173/thank-you" />
+            <input type="hidden" name="_next" value="https://gtumotorsports.live/thank-you" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_subject" value="New Sponsorship Inquiry!" />
             

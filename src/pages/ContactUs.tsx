@@ -118,7 +118,7 @@ const ContactUs = () => {
                 method="POST"
                 className="space-y-6"
               >
-                <input type="hidden" name="_next" value="http://localhost:5173/thank-you" />
+                <input type="hidden" name="_next" value="https://gtumotorsports.live/thank-you" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_subject" value="New contact form submission!" />
                 <div>
