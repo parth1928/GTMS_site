@@ -127,6 +127,10 @@ const Home = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full sm:w-[250px]"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   <Button
                     size="lg"
@@ -135,10 +139,16 @@ const Home = () => {
                     Become a Sponsor
                   </Button>
                 </motion.a>
-                <motion.div
+                <motion.a
+                  href="#achievements"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full sm:w-[250px]"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const timelineSection = document.querySelector('.min-h-screen.bg-black:nth-child(3)');
+                    timelineSection?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                 >
                   <Button
                     size="lg"
@@ -147,7 +157,7 @@ const Home = () => {
                   >
                     Explore The Legacy
                   </Button>
-                </motion.div>
+                </motion.a>
               </div>
             </div>
           </div>

@@ -5,13 +5,13 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Cars", href: "/cars" },
+  { name: "Team-26", href: "/team26" },
   { name: "Sponsors", href: "/sponsors" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
@@ -21,19 +21,38 @@ const Header = () => {
   const logoUrl = "/logos/gtmslogo.webp";
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
+
+  useEffect(() => {
+    if (location.pathname === '/' && location.state?.scrollToContact) {
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      // Clear the state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Show header after scrolling 90% of the viewport height
-    setVisible(latest > window.innerHeight * 0.9);
+    // Show header after scrolling 90% of the viewport height on home page
+    // Show header after scrolling a small amount on other pages
+    if (isHomePage) {
+      setVisible(latest > window.innerHeight * 0.9);
+    } else {
+      setVisible(latest > 50);
+    }
   });
 
   const headerStyle = {
-    background: visible || isOpen ? "rgba(10, 10, 10, 0.95)" : "transparent",
+    background: (visible || isOpen || (isHovered && !isHomePage)) ? "rgba(10, 10, 10, 0.95)" : "transparent",
     backdropFilter: "blur(12px)",
     WebkitBackdropFilter: "blur(12px)",
     borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+    transition: "background-color 0.3s ease",
   };
 
   return (
@@ -43,10 +62,12 @@ const Header = () => {
         style={headerStyle}
         variants={{
           visible: { y: 0, opacity: 1 },
-          hidden: { y: "-100%", opacity: 0 },
+          hidden: { y: isHomePage ? "-100%" : 0, opacity: (visible || (!isHomePage && isHovered)) ? 1 : 0 },
         }}
-        animate={visible ? "visible" : "hidden"}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        animate={visible || (!isHomePage && isHovered) ? "visible" : "hidden"}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        onMouseEnter={() => !isHomePage && setIsHovered(true)}
+        onMouseLeave={() => !isHomePage && setIsHovered(false)}
       >
         <div className="flex items-center">
           <Link to="/">
@@ -85,7 +106,16 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button className="hidden lg:flex px-6 h-12 text-sm font-bold text-white uppercase transition-all duration-300 transform bg-orange-600 rounded-none hover:bg-orange-500 hover:scale-105 items-center justify-center">
+          <Button 
+            className="hidden lg:flex px-6 h-12 text-sm font-bold text-white uppercase transition-all duration-300 transform bg-orange-600 rounded-none hover:bg-orange-500 hover:scale-105 items-center justify-center"
+            onClick={() => {
+              if (location.pathname === '/') {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                navigate('/', { replace: true, state: { scrollToContact: true } });
+              }
+            }}
+          >
             Become a Sponsor
           </Button>
 
@@ -151,8 +181,15 @@ const Header = () => {
                   transition={{ duration: 0.3, delay: 0.2 }}
                 >
                   <Button
-                    onClick={() => setIsOpen(false)}
-                    className="mt-6 px-8 py-6 text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 hover:bg-orange-500 rounded-none w-full sm:w-auto"
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (location.pathname === '/') {
+                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        navigate('/', { replace: true, state: { scrollToContact: true } });
+                      }
+                    }}
+                    className="mt-6 px-8 py-6 text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 hover:bg-orange-500 rounded-none w-full"
                   >
                     Become a Sponsor
                   </Button>

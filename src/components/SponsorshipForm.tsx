@@ -78,7 +78,7 @@ const SponsorshipForm = () => {
                 <Input 
                   name="name" 
                   id="name" 
-                  placeholder="Raj Patel" 
+                  placeholder="Name"
                   required 
                   className="h-9 sm:h-10" 
                 />
@@ -88,7 +88,7 @@ const SponsorshipForm = () => {
                 <Input 
                   name="company" 
                   id="company" 
-                  placeholder="TechMahindra Ltd." 
+                  placeholder="Company" 
                   required 
                   className="h-9 sm:h-10"
                 />
@@ -100,7 +100,7 @@ const SponsorshipForm = () => {
                 name="email" 
                 id="email" 
                 type="email" 
-                placeholder="raj.patel@techmahindra.com" 
+                placeholder="Email" 
                 required 
                 className="h-9 sm:h-10"
               />
@@ -111,7 +111,7 @@ const SponsorshipForm = () => {
                 name="phone" 
                 id="phone" 
                 type="tel" 
-                placeholder="+91 98765 43210" 
+                placeholder="Phone" 
                 className="h-9 sm:h-10"
               />
             </div>
@@ -120,7 +120,7 @@ const SponsorshipForm = () => {
               <Textarea 
                 name="message" 
                 id="message" 
-                placeholder="I represent TechMahindra and would like to explore partnership opportunities with GTU Motorsports..." 
+                placeholder="Your message" 
                 required 
                 className="min-h-[100px] sm:min-h-[120px]"
               />

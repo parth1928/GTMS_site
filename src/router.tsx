@@ -8,6 +8,7 @@ export const SuspenseWrapper = ({ children }: { children: ReactNode }) => {
 
 const App = lazy(() => import("./pages/App"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
+const Team26 = lazy(() => import("./pages/Team26"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const Sponsors = lazy(() => import("./pages/Sponsors"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
@@ -35,6 +36,16 @@ export const router = createBrowserRouter(
         <AppProvider>
           <SuspenseWrapper>
             <AboutUs />
+          </SuspenseWrapper>
+        </AppProvider>
+      )
+    },
+    {
+      path: "/team26",
+      element: (
+        <AppProvider>
+          <SuspenseWrapper>
+            <Team26 />
           </SuspenseWrapper>
         </AppProvider>
       )
