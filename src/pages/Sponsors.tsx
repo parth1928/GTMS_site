@@ -90,12 +90,18 @@ const Sponsors = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="relative aspect-[3/2] flex items-center justify-center p-2 sm:p-3 md:p-4">
+                  <motion.div
+                    className="absolute inset-0 border border-orange-500/50 sm:border-2 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 shadow-[0_0_10px_rgba(249,115,22,0.1)] group-hover:shadow-[0_0_15px_rgba(249,115,22,0.2)] pointer-events-none"
+                    initial={{ scale: 1.1 }}
+                    whileHover={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
                   {sponsor.link ? (
                     <a 
                       href={sponsor.link} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full h-full flex items-center justify-center"
+                      className="relative z-10 w-full h-full flex items-center justify-center"
                     >
                       <img
                         src={sponsor.logo}
@@ -110,12 +116,6 @@ const Sponsors = () => {
                       className={sponsor.className || "w-auto h-auto max-h-[40px] sm:max-h-[50px] md:max-h-[60px] object-contain transition-all duration-300"}
                     />
                   )}
-                  <motion.div
-                    className="absolute inset-0 border border-orange-500/50 sm:border-2 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 shadow-[0_0_10px_rgba(249,115,22,0.1)] group-hover:shadow-[0_0_15px_rgba(249,115,22,0.2)]"
-                    initial={{ scale: 1.1 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
                 </div>
                 <h3 className="text-gray-900 text-center mt-2 sm:mt-3 md:mt-4 font-outfit font-medium text-xs sm:text-sm md:text-base truncate px-2">{sponsor.name}</h3>
               </motion.div>
