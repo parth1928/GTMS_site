@@ -6,7 +6,16 @@ interface Sponsor {
   scale?: number;
 }
 
-const sponsors: Sponsor[] = [
+interface SponsorWithLink extends Sponsor {
+  link?: string;
+}
+
+const sponsors: SponsorWithLink[] = [
+  { 
+    name: "VI-grade", 
+    logo: "/logos/vi-grade.png",
+    link: "https://www.vi-grade.com/"
+  },
   { name: "ANSYS", logo: "/logos/ANSYS_logo.png" },
   { name: "Avon Tyres", logo: "/logos/Avon_Tyres_logo_logotipo.png" },
   { name: "Balaji Wafers", logo: "/logos/BalajiWafersLogo.svg.png" },
@@ -52,16 +61,36 @@ const SponsorWall = () => {
                 transition: { duration: 0.2 }
               }}
             >
-              <motion.img
-                src={sponsor.logo}
-                alt={sponsor.name}
-                className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:brightness-105"
-                style={{ transform: `scale(${sponsor.scale || 1})` }}
-                whileHover={{ 
-                  scale: (sponsor.scale || 1) * 1.05,
-                  transition: { duration: 0.2 }
-                }}
-              />
+              {sponsor.link ? (
+                <a 
+                  href={sponsor.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full h-full flex items-center justify-center"
+                >
+                  <motion.img
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:brightness-105"
+                    style={{ transform: `scale(${sponsor.scale || 1})` }}
+                    whileHover={{ 
+                      scale: (sponsor.scale || 1) * 1.05,
+                      transition: { duration: 0.2 }
+                    }}
+                  />
+                </a>
+              ) : (
+                <motion.img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:brightness-105"
+                  style={{ transform: `scale(${sponsor.scale || 1})` }}
+                  whileHover={{ 
+                    scale: (sponsor.scale || 1) * 1.05,
+                    transition: { duration: 0.2 }
+                  }}
+                />
+              )}
             </motion.div>
           ))}
         </div>

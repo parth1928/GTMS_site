@@ -6,7 +6,19 @@ import SponsorshipForm from "components/SponsorshipForm";
 
 const Sponsors = () => {
   // Get all sponsor logos from the logos folder
-  const sponsorLogos = [
+  interface SponsorLogo {
+    name: string;
+    logo: string;
+    link?: string;
+    className?: string;
+  }
+
+  const sponsorLogos: SponsorLogo[] = [
+    { 
+      name: "VI-grade", 
+      logo: "/logos/vi-grade.png",
+      link: "https://www.vi-grade.com/"
+    },
     { name: "ANSYS", logo: "/logos/ANSYS_logo.png" },
     { name: "Avon Tyres", logo: "/logos/Avon_Tyres_logo_logotipo.png" },
     { name: "Balaji Wafers", logo: "/logos/BalajiWafersLogo.svg.png" },
@@ -78,11 +90,26 @@ const Sponsors = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="relative aspect-[3/2] flex items-center justify-center p-2 sm:p-3 md:p-4">
-                  <img
-                    src={sponsor.logo}
-                    alt={`${sponsor.name} logo`}
-                    className="w-auto h-auto max-h-[40px] sm:max-h-[50px] md:max-h-[60px] object-contain transition-all duration-300"
-                  />
+                  {sponsor.link ? (
+                    <a 
+                      href={sponsor.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full h-full flex items-center justify-center"
+                    >
+                      <img
+                        src={sponsor.logo}
+                        alt={`${sponsor.name} logo`}
+                        className={sponsor.className || "w-auto h-auto max-h-[40px] sm:max-h-[50px] md:max-h-[60px] object-contain transition-all duration-300"}
+                      />
+                    </a>
+                  ) : (
+                    <img
+                      src={sponsor.logo}
+                      alt={`${sponsor.name} logo`}
+                      className={sponsor.className || "w-auto h-auto max-h-[40px] sm:max-h-[50px] md:max-h-[60px] object-contain transition-all duration-300"}
+                    />
+                  )}
                   <motion.div
                     className="absolute inset-0 border border-orange-500/50 sm:border-2 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 shadow-[0_0_10px_rgba(249,115,22,0.1)] group-hover:shadow-[0_0_15px_rgba(249,115,22,0.2)]"
                     initial={{ scale: 1.1 }}
