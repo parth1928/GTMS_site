@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import { FiX } from "react-icons/fi";
-import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from 'react-masonry-css';
 
 interface GalleryImage {
@@ -13,40 +12,9 @@ interface GalleryImage {
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [allImages, setAllImages] = useState<GalleryImage[]>([]);
   const [displayedImages, setDisplayedImages] = useState<GalleryImage[]>([]);
-  const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const imagesPerLoad = 25;
-  const preloadThreshold = 1000;
-  const [preloadedImages, setPreloadedImages] = useState<GalleryImage[]>([]);
-  const [currentBatch, setCurrentBatch] = useState(0);
-
-  // Preload the next two batches of images
-  const preloadNextBatches = async (currentLength: number) => {
-    const nextBatchStart = currentLength;
-    const nextTwoBatches = allImages.slice(nextBatchStart, nextBatchStart + (imagesPerLoad * 2));
-    
-    if (nextTwoBatches.length === 0) return;
-
-    // Start preloading these images
-    const preloadPromises = nextTwoBatches.map(
-      (image) =>
-        new Promise((resolve) => {
-          const img = new Image();
-          img.onload = resolve;
-          img.onerror = resolve;
-          img.src = getThumbnailUrl(image.url);
-        })
-    );
-
-    try {
-      await Promise.all(preloadPromises);
-      setPreloadedImages(nextTwoBatches);
-    } catch (error) {
-      console.error('Error preloading images:', error);
-    }
-  };
+  const imagesPerBatch = 25;
 
   // Masonry breakpoints
   const breakpointColumns = {
@@ -56,114 +24,89 @@ const Gallery = () => {
     500: 1
   };
 
-  useEffect(() => {
-    const loadInitialImages = async () => {
-      try {
-        const response = await fetch("/upload/gallery.json");
-        const data = await response.json();
-        
-        setAllImages(data);
-        
-        // Display first batch immediately
-        const initialBatch = data.slice(0, imagesPerLoad);
-        setDisplayedImages(initialBatch);
-        setCurrentBatch(1);
-        
-        // Immediately start preloading next two batches
-        const nextTwoBatches = data.slice(imagesPerLoad, imagesPerLoad * 3);
-        setPreloadedImages(nextTwoBatches);
-        
-        // Start preloading the images
-        nextTwoBatches.forEach(image => {
-          const img = new Image();
-          img.src = getThumbnailUrl(image.url);
-        });
-        
-        setHasMore(data.length > imagesPerLoad);
-      } catch (error) {
-        console.error("Error loading gallery images:", error);
-      }
-    };
-
-    loadInitialImages();
-  }, []);
-
-  const loadMore = async () => {
-    if (isLoading || !hasMore) return;
-
-    setIsLoading(true);
+  // Load and process images batch by batch
+  const loadImageBatch = async (images: GalleryImage[], startIndex: number, existingUrls = new Set<string>()) => {
+    const endIndex = startIndex + imagesPerBatch;
+    const batch = images.slice(startIndex, endIndex);
     
-    try {
-      // Use preloaded images if available
-      if (preloadedImages.length > 0) {
-        // Add the first batch of preloaded images
-        const nextBatch = preloadedImages.slice(0, imagesPerLoad);
-        setDisplayedImages(prev => [...prev, ...nextBatch]);
-        
-        // Increment batch counter
-        setCurrentBatch(prev => prev + 1);
-        
-        // Update hasMore state
-        setHasMore(currentBatch * imagesPerLoad < allImages.length - imagesPerLoad);
-        
-        // Immediately start preloading the next batches
-        const nextBatchStart = (currentBatch + 1) * imagesPerLoad;
-        preloadNextBatches(nextBatchStart);
-      } else {
-        // Fallback if no preloaded images (shouldn't normally happen)
-        const currentLength = displayedImages.length;
-        const nextImages = allImages.slice(currentLength, currentLength + imagesPerLoad);
-        
-        if (nextImages.length === 0) {
-          setHasMore(false);
-          return;
-        }
+    // Filter out any duplicates before processing
+    const uniqueBatch = batch.filter(image => !existingUrls.has(image.url));
+    
+    // Update the set of existing URLs
+    uniqueBatch.forEach(image => existingUrls.add(image.url));
 
-        setDisplayedImages(prev => [...prev, ...nextImages]);
-        setHasMore(currentLength + imagesPerLoad < allImages.length);
+    if (uniqueBatch.length === 0) {
+      // If this batch had no unique images and we still have more images, try the next batch
+      if (endIndex < images.length) {
+        requestAnimationFrame(() => {
+          loadImageBatch(images, endIndex, existingUrls);
+        });
       }
-    } catch (error) {
-      console.error('Error loading more images:', error);
-    } finally {
-      setIsLoading(false);
+      return;
+    }
+
+    // Preload all images in this batch
+    await Promise.all(
+      uniqueBatch.map(
+        (image) =>
+          new Promise((resolve) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = resolve;
+            img.src = getThumbnailUrl(image.url);
+          })
+      )
+    );
+
+    // Add the batch to displayed images, ensuring no duplicates
+    setDisplayedImages(prev => {
+      const prevUrls = new Set(prev.map(img => img.url));
+      const trulyUnique = uniqueBatch.filter(img => !prevUrls.has(img.url));
+      return [...prev, ...trulyUnique];
+    });
+
+    // If there are more images, load the next batch
+    if (endIndex < images.length) {
+      // Load next batch after a slight delay to allow for rendering
+      requestAnimationFrame(() => {
+        loadImageBatch(images, endIndex, existingUrls);
+      });
     }
   };
 
-  // Improved scroll handler with smoother loading
+  // Initial load
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-    const handleScroll = () => {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      
-      scrollTimeout = setTimeout(() => {
-        if (isLoading || !hasMore) return;
-
-        const scrollHeight = document.documentElement.scrollHeight;
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const clientHeight = window.innerHeight;
-        const distanceToBottom = scrollHeight - scrollTop - clientHeight;
+    const loadImages = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch("/upload/gallery.json");
+        const data: GalleryImage[] = await response.json();
         
-        // Load more images when we're getting close to the preloaded content
-        if (distanceToBottom <= preloadThreshold * 2) {
-          loadMore();
-        }
-      }, 50); // Reduced throttle time for smoother experience
+        // First, ensure we have no duplicates in the source data
+        const uniqueUrls = new Set<string>();
+        const uniqueImages = data.filter(img => {
+          if (uniqueUrls.has(img.url)) {
+            console.log('Filtered duplicate:', img.url); // Debug log
+            return false;
+          }
+          uniqueUrls.add(img.url);
+          return true;
+        });
+
+        console.log('Total images:', data.length); // Debug log
+        console.log('Unique images:', uniqueImages.length); // Debug log
+
+        // Start loading batches with an empty Set to track loaded images
+        loadImageBatch(uniqueImages, 0, new Set<string>());
+      } catch (error) {
+        console.error("Error loading gallery images:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-    };
-  }, [isLoading, hasMore, displayedImages.length]);
-
-  // Effect to ensure we always have next batches preloaded
-  useEffect(() => {
-    if (!isLoading && hasMore && preloadedImages.length < imagesPerLoad) {
-      const nextBatchStart = (currentBatch + 1) * imagesPerLoad;
-      preloadNextBatches(nextBatchStart);
-    }
-  }, [displayedImages, isLoading, hasMore]);
+    loadImages();
+  }, []);
 
   // Cloudinary helper functions
   function getThumbnailUrl(fullUrl: string) {
@@ -176,19 +119,7 @@ const Gallery = () => {
     return `${fullUrl}?q_auto:best,f_auto,fl_progressive,dpr_auto,fl_keep_iptc`;
   }
 
-  // Pre-load the next batch of images
-  useEffect(() => {
-    if (displayedImages.length > 0 && hasMore) {
-      const nextBatch = allImages.slice(
-        displayedImages.length,
-        displayedImages.length + imagesPerLoad
-      );
-      nextBatch.forEach(image => {
-        const img = new Image();
-        img.src = getThumbnailUrl(image.url);
-      });
-    }
-  }, [displayedImages, hasMore]);
+
 
 
 
@@ -232,22 +163,12 @@ const Gallery = () => {
           }
         `}</style>
         <section className="container mx-auto px-4 py-16">
-          <InfiniteScroll
-            dataLength={displayedImages.length}
-            next={loadMore}
-            hasMore={hasMore}
-            loader={<div className="h-4" />}
-            endMessage={<div className="h-4" />}
-            scrollThreshold="100px"
-            style={{ overflow: 'visible' }}
-            scrollableTarget="scrollableDiv"
+          <Masonry
+            breakpointCols={breakpointColumns}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
           >
-            <Masonry
-              breakpointCols={breakpointColumns}
-              className="my-masonry-grid"
-              columnClassName="my-masonry-grid_column"
-            >
-              {displayedImages.map((image, index) => (
+            {displayedImages.map((image, index) => (
                 <motion.div
                   key={image.url}
                   className="relative group cursor-pointer break-inside-avoid"
@@ -280,8 +201,8 @@ const Gallery = () => {
                 </motion.div>
               ))}
             </Masonry>
-          </InfiniteScroll>
-        </section>        {/* Lightbox */}
+        </section>
+        {/* Lightbox */}
         <AnimatePresence>
           {selectedImage && (
             <motion.div
