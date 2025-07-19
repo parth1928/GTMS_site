@@ -20,27 +20,100 @@ const Sponsors = () => {
       link: "https://www.vi-grade.com/",
       className: "w-auto h-auto max-h-[45px] sm:max-h-[55px] md:max-h-[65px] object-contain transition-all duration-300"
     },
-    { name: "ANSYS", logo: "/logos/ANSYS_logo.png" },
-    { name: "Avon Tyres", logo: "/logos/Avon_Tyres_logo_logotipo.png" },
-    { name: "Balaji Wafers", logo: "/logos/BalajiWafersLogo.svg.png" },
-    { name: "Balkrishna Tyres", logo: "/logos/Balkrishna_Tyres_Logo.svg.png" },
-    { name: "Dassault Systèmes", logo: "/logos/Dassault_Systèmes_logo.svg.png" },
-    { name: "Hoosier", logo: "/logos/hoosier-logo-png_seeklogo-392900.png", className: "h-24 w-auto" },
-    { name: "JK Tyre", logo: "/logos/jk-tyre-logo-present-scaled.webp" },
-    { name: "KTM", logo: "/logos/KTM-Logo.svg.png" },
-    { name: "MATLAB", logo: "/logos/imgbin-matlab-mathworks-simulink-logo-computer-software-inform-tica-syE1kd05p5v2ZMbEhkaahvFhX.jpg" },
-    { name: "OZ Racing", logo: "/logos/oz-racing-logo-png_seeklogo-104928.png" },
-    { name: "Red Bull", logo: "/logos/RedBullEnergyDrink.svg.png" },
-    { name: "Wilwood", logo: "/logos/Wilwood-DB-Logo.avif" },
-    { name: "Siemens", logo: "/logos/Siemens_AG_logo.svg.webp" },
-    { name: "Shore Rubber", logo: "/logos/ShoreRubber_email-signature-03.png" },
-    { name: "Shorai", logo: "/logos/Shorai logo.webp" },
-    { name: "Schroth Racing", logo: "/logos/SCHROTH_Racing_Logo_4c_neg_2007.webp" },
-    { name: "newlpvt", logo: "/logos/newlpvt-logo1.png" },
+    { 
+      name: "ANSYS", 
+      logo: "/logos/ANSYS_logo.png",
+      link: "https://www.ansys.com/"
+    },
+    { 
+      name: "Avon Tyres", 
+      logo: "/logos/Avon_Tyres_logo_logotipo.png",
+      link: "https://www.avontyres.com/"
+    },
+    { 
+      name: "Balaji Wafers", 
+      logo: "/logos/BalajiWafersLogo.svg.png",
+      link: "https://www.balajiwafers.com/"
+    },
+    { 
+      name: "Balkrishna Tyres", 
+      logo: "/logos/Balkrishna_Tyres_Logo.svg.png",
+      link: "https://www.bkt-tires.com/"
+    },
+    { 
+      name: "Dassault Systèmes", 
+      logo: "/logos/Dassault_Systèmes_logo.svg.png",
+      link: "https://www.3ds.com/"
+    },
+    { 
+      name: "Hoosier", 
+      logo: "/logos/hoosier-logo-png_seeklogo-392900.png",
+      link: "https://www.hoosiertire.com/",
+      className: "h-24 w-auto" 
+    },
+    { 
+      name: "JK Tyre", 
+      logo: "/logos/jk-tyre-logo-present-scaled.webp",
+      link: "https://www.jktyre.com/"
+    },
+    { 
+      name: "KTM", 
+      logo: "/logos/KTM-Logo.svg.png",
+      link: "https://www.ktm.com/"
+    },
+    { 
+      name: "MATLAB", 
+      logo: "/logos/imgbin-matlab-mathworks-simulink-logo-computer-software-inform-tica-syE1kd05p5v2ZMbEhkaahvFhX.jpg",
+      link: "https://www.mathworks.com/products/matlab.html"
+    },
+    { 
+      name: "OZ Racing", 
+      logo: "/logos/oz-racing-logo-png_seeklogo-104928.png",
+      link: "https://www.ozracing.com/"
+    },
+    { 
+      name: "Red Bull", 
+      logo: "/logos/RedBullEnergyDrink.svg.png",
+      link: "https://www.redbull.com/"
+    },
+    { 
+      name: "Wilwood", 
+      logo: "/logos/Wilwood-DB-Logo.avif",
+      link: "https://www.wilwood.com/"
+    },
+    { 
+      name: "Siemens", 
+      logo: "/logos/Siemens_AG_logo.svg.webp",
+      link: "https://www.siemens.com/"
+    },
+    { 
+      name: "Shore Rubber", 
+      logo: "/logos/ShoreRubber_email-signature-03.png",
+      link: "https://www.shorerubber.com/"
+    },
+    { 
+      name: "Shorai", 
+      logo: "/logos/Shorai logo.webp",
+      link: "https://shoraipower.com/"
+    },
+    { 
+      name: "Schroth Racing", 
+      logo: "/logos/SCHROTH_Racing_Logo_4c_neg_2007.webp",
+      link: "https://www.schroth.com/en/racing"
+    },
+    { 
+      name: "Gajjar Industries", 
+      logo: "/logos/newlpvt-logo1.png",
+      link: "https://www.gajjarindustries.in/"
+    },
     { name: "Aurora", logo: "/logos/cropped-halflogo-aurora.jpeg.jpg" },
     { name: "Partner 1", logo: "/logos/Screenshot 2025-07-07 174428-Picsart-AiImageEnhancer.png" },
     { name: "Partner 2", logo: "/logos/Screenshot 2025-07-07 133126-Picsart-AiImageEnhancer.png" },
-    { name: "Partner 3", logo: "/logos/images.png" },
+    { 
+      name: "igus", 
+      logo: "/logos/images.png",
+      link: "https://www.igus.in/"
+    },
     { name: "Partner 4", logo: "/logos/images (1).png" }
   ];
 
