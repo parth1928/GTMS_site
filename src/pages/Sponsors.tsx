@@ -16,8 +16,9 @@ const Sponsors = () => {
   const sponsorLogos: SponsorLogo[] = [
     { 
       name: "VI-grade", 
-      logo: "/logos/vi-grade.png",
-      link: "https://www.vi-grade.com/"
+      logo: "/logos/vi-grade_red (1).svg",
+      link: "https://www.vi-grade.com/",
+      className: "w-auto h-auto max-h-[45px] sm:max-h-[55px] md:max-h-[65px] object-contain transition-all duration-300"
     },
     { name: "ANSYS", logo: "/logos/ANSYS_logo.png" },
     { name: "Avon Tyres", logo: "/logos/Avon_Tyres_logo_logotipo.png" },

@@ -13,8 +13,9 @@ interface SponsorWithLink extends Sponsor {
 const sponsors: SponsorWithLink[] = [
   { 
     name: "VI-grade", 
-    logo: "/logos/vi-grade.png",
-    link: "https://www.vi-grade.com/"
+    logo: "/logos/vi-grade_red (1).svg",
+    link: "https://www.vi-grade.com/",
+    scale: 1.2
   },
   { name: "ANSYS", logo: "/logos/ANSYS_logo.png" },
   { name: "Avon Tyres", logo: "/logos/Avon_Tyres_logo_logotipo.png" },
