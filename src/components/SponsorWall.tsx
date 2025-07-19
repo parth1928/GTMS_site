@@ -15,7 +15,7 @@ const sponsors: SponsorWithLink[] = [
     name: "VI-grade", 
     logo: "/logos/vi-grade_red (1).svg",
     link: "https://www.vi-grade.com/",
-    scale: 1.2
+    scale: 1.02
   },
   { 
     name: "ANSYS", 
