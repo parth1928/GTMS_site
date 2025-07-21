@@ -110,8 +110,12 @@ const Gallery = () => {
 
   // Cloudinary helper functions
   function getThumbnailUrl(fullUrl: string) {
-    // Optimized thumbnails: smaller size, lower quality, faster loading
-    return `${fullUrl}?w=350,h=250,c_fill,g_auto,q_auto:eco,f_auto,dpr_auto,e_blur:50`;
+    // Even smaller thumbnail: w=200, h=130, q_20, no blur, dpr=1 for strict size
+    return `${fullUrl}?w=200,h=130,c_fill,g_auto,q_20,f_auto,dpr_1`;
+  }
+  // For the blur-up placeholder, keep the strong blur and tiny size
+  function getPlaceholderUrl(fullUrl: string) {
+    return `${fullUrl}?w=20,h=13,c_fill,g_auto,q_10,f_auto,dpr_1,e_blur:1000`;
   }
 
   function getFullSizeUrl(fullUrl: string) {
@@ -169,37 +173,66 @@ const Gallery = () => {
             columnClassName="my-masonry-grid_column"
           >
             {displayedImages.map((image, index) => (
+              <motion.div
+                key={image.url}
+                className="relative group cursor-pointer break-inside-avoid"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: Math.min(index * 0.05, 1) }}
+                onClick={() => {
+                  setSelectedImage(image);
+                }}
+              >
                 <motion.div
-                  key={image.url}
-                  className="relative group cursor-pointer break-inside-avoid"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: Math.min(index * 0.05, 1) }}
-                  onClick={() => {
-                    setSelectedImage(image);
-                  }}
+                  className="relative overflow-hidden rounded-lg bg-black/5"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <motion.div
-                    className="relative overflow-hidden rounded-lg bg-black/5"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="relative overflow-hidden rounded-lg">
-                      <img
-                        src={getThumbnailUrl(image.url)}
-                        alt={image.name}
-                        loading="lazy"
-                        className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105 bg-gray-900"
-                        onError={(e) => {
-                          const img = e.target as HTMLImageElement;
-                          // Retry with a more basic transformation if the first attempt fails
-                          img.src = `${image.url}?w=350,q_auto:low,f_auto`;
-                        }}
-                      />
-                    </div>
-                  </motion.div>
+                  <div className="relative overflow-hidden rounded-lg">
+                    {/* Blur-up LQIP placeholder */}
+                    <img
+                      src={getPlaceholderUrl(image.url)}
+                      alt={image.name + ' placeholder'}
+                      className="w-full h-auto object-cover absolute inset-0 transition-all duration-300"
+                      style={{
+                        filter: 'blur(20px)',
+                        opacity: 1,
+                        zIndex: 1,
+                        pointerEvents: 'none',
+                      }}
+                    />
+                    {/* Real thumbnail, fades in over placeholder */}
+                    <img
+                      src={getThumbnailUrl(image.url)}
+                      alt={image.name}
+                      loading="lazy"
+                      className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105 bg-gray-900 relative"
+                      style={{
+                        opacity: 1,
+                        zIndex: 2,
+                        position: 'relative',
+                        background: 'transparent',
+                      }}
+                      onLoad={e => {
+                        // Fade out the placeholder when loaded
+                        const parent = (e.target as HTMLImageElement).parentElement;
+                        if (parent) {
+                          const placeholder = parent.querySelector('img[alt$="placeholder"]') as HTMLImageElement;
+                          if (placeholder) {
+                            placeholder.style.opacity = '0';
+                            placeholder.style.transition = 'opacity 0.4s';
+                          }
+                        }
+                      }}
+                      onError={e => {
+                        const img = e.target as HTMLImageElement;
+                        img.src = `${image.url}?w=200,q_auto:low,f_auto`;
+                      }}
+                    />
+                  </div>
                 </motion.div>
-              ))}
+              </motion.div>
+            ))}
             </Masonry>
         </section>
         {/* Lightbox */}
