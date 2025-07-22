@@ -16,12 +16,15 @@ const Gallery = () => {
   const [isLoading, setIsLoading] = useState(false);
   const imagesPerBatch = 25;
 
-  // Masonry breakpoints
+  // Masonry breakpoints - optimized for better visual balance
   const breakpointColumns = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1
+    default: 4,    // Large screens (4 columns)
+    1536: 4,       // 2xl screens
+    1280: 3,       // xl screens
+    1024: 3,       // lg screens
+    768: 2,        // md screens
+    640: 2,        // sm screens
+    480: 1         // xs screens
   };
 
   // Load and process images batch by batch
@@ -110,12 +113,26 @@ const Gallery = () => {
 
   // Cloudinary helper functions
   function getThumbnailUrl(fullUrl: string) {
-    // Optimized thumbnail with fixed dimensions and good quality
-    return `${fullUrl}?w=200,h=130,c_fill,g_auto,q_60,f_webp,dpr_1`;
+    // Maintain aspect ratio while limiting width for thumbnails
+    const transformations = [
+      'w_400',          // max width
+      'c_limit',        // maintain aspect ratio
+      'q_60',           // balanced quality
+      'f_webp',         // force WebP
+      'dpr_1.0',        // force 1x DPR
+      'e_sharpen:60'    // enhance details
+    ].join(',');
+    return `${fullUrl.split('upload/')[0]}upload/${transformations}/${fullUrl.split('upload/')[1]}`;
   }
-  // For the blur-up placeholder, keep the strong blur and tiny size
+  // For the blur-up placeholder, use ultra-small size with medium blur
   function getPlaceholderUrl(fullUrl: string) {
-    return `${fullUrl}?w=20,h=13,c_fill,g_auto,q_10,f_webp,dpr_1,e_blur:1000`;
+    const transformations = [
+      'w_40',
+      'c_limit',        // maintain aspect ratio
+      'q_10',
+      'e_blur:400',
+      'f_webp'
+    ].join(',');
     return `${fullUrl.split('upload/')[0]}upload/${transformations}/${fullUrl.split('upload/')[1]}`;
   }
 
@@ -157,17 +174,66 @@ const Gallery = () => {
           .my-masonry-grid {
             display: flex;
             width: auto;
-            margin-left: -16px; /* gutter size offset */
+            margin-left: -8px; /* minimal gutter */
+            margin-right: -8px;
           }
           .my-masonry-grid_column {
-            padding-left: 16px; /* gutter size */
+            padding-left: 8px;
+            padding-right: 8px;
             background-clip: padding-box;
           }
           .my-masonry-grid_column > div {
-            margin-bottom: 16px;
+            margin-bottom: 16px; /* reduced vertical spacing */
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #000;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            break-inside: avoid;
+            width: 100%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+          }
+          .my-masonry-grid_column > div::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 30%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+          }
+          .my-masonry-grid_column > div:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+          }
+          .my-masonry-grid_column > div:hover::after {
+            opacity: 1;
+          }
+          .my-masonry-grid_column > div img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+          }
+          .my-masonry-grid_column > div:hover img {
+            transform: scale(1.05);
+          }
+          /* Responsive padding adjustments */
+          @media (max-width: 640px) {
+            .my-masonry-grid {
+              margin-left: -4px;
+              margin-right: -4px;
+            }
+            .my-masonry-grid_column {
+              padding-left: 4px;
+              padding-right: 4px;
+            }
+            .my-masonry-grid_column > div {
+              margin-bottom: 8px;
+            }
           }
         `}</style>
-        <section className="container mx-auto px-4 py-16">
+        <section className="container mx-auto px-2 sm:px-4 lg:px-6 py-8 sm:py-12">
           <Masonry
             breakpointCols={breakpointColumns}
             className="my-masonry-grid"
