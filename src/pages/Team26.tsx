@@ -9,6 +9,7 @@ const teamMembers = [
   { name: "Nairitya Tarnekar", role: "Chassis Head", linkedin: "https://www.linkedin.com/in/nairitya-tarnekar-798655287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Nairitya-Tarnekar.jpg" },
   { name: "Vaibhav Thakkar", role: "EV PWT Head", linkedin: "https://www.linkedin.com/in/thakkar-vaibhav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
   { name: "Vraj Lakkad", role: "Chassis", linkedin: "https://www.linkedin.com/in/vraj-lakkad-54966a277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/VRAJ.jpg" },
+  { name: "Swastik Shukla", role: "Chassis", linkedin: "https://www.linkedin.com/in/swastik-shukla-b7673b327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/swastik.jpg" }, 
   { name: "Parth Oza", role: "EV PWT", linkedin: "https://www.linkedin.com/in/parth-oza-7904b8228/", img: "/team/Parth-oza.jpg" },
   { name: "Prit Mevada", role: "EV PWT", linkedin: "https://www.linkedin.com/in/prit-mevada-0aab572b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Prit.jpg" },
   { name: "Shlok Bhatt", role: "EV PWT", linkedin: "https://www.linkedin.com/in/shlok-bhatt-b6056a248?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/shlok.jpg" },
@@ -21,7 +22,7 @@ const teamMembers = [
   { name: "Dev Panchal", role: "VD", linkedin: "https://www.linkedin.com/in/dev-panchal-249a41359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/dev-panchal.jpg" },
   { name: "Samir Panchal", role: "VD", linkedin: "https://www.linkedin.com/in/samir-panchal-1bb77b270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/samir.jpg" },
   { name: "Prahit Shah", role: "VD", linkedin: "https://www.linkedin.com/in/prahit-shah-563632283?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Prahit-Shah.jpg" },
-   { name: "Swastik Shukla", role: "Chassis", linkedin: "https://www.linkedin.com/in/swastik-shukla-b7673b327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/swastik.jpg" },
+  
   ];
 
 function getInitials(name) {
