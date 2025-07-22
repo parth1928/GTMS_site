@@ -110,17 +110,18 @@ const Gallery = () => {
 
   // Cloudinary helper functions
   function getThumbnailUrl(fullUrl: string) {
-    // Even smaller thumbnail: w=200, h=130, q_20, no blur, dpr=1 for strict size
-    return `${fullUrl}?w=200,h=130,c_fill,g_auto,q_20,f_auto,dpr_1`;
+    // Optimized thumbnail with fixed dimensions and good quality
+    return `${fullUrl}?w=200,h=130,c_fill,g_auto,q_60,f_webp,dpr_1`;
   }
   // For the blur-up placeholder, keep the strong blur and tiny size
   function getPlaceholderUrl(fullUrl: string) {
-    return `${fullUrl}?w=20,h=13,c_fill,g_auto,q_10,f_auto,dpr_1,e_blur:1000`;
+    return `${fullUrl}?w=20,h=13,c_fill,g_auto,q_10,f_webp,dpr_1,e_blur:1000`;
+    return `${fullUrl.split('upload/')[0]}upload/${transformations}/${fullUrl.split('upload/')[1]}`;
   }
 
   function getFullSizeUrl(fullUrl: string) {
-    // High quality for lightbox view
-    return `${fullUrl}?q_auto:best,f_auto,fl_progressive,dpr_auto,fl_keep_iptc`;
+    // Progressive loading for lightbox view with smart quality
+    return `${fullUrl}?w=1280,h=853,c_fit,q_auto:good,f_auto,fl_progressive`;
   }
 
 
@@ -206,12 +207,14 @@ const Gallery = () => {
                       src={getThumbnailUrl(image.url)}
                       alt={image.name}
                       loading="lazy"
-                      className="w-full h-auto object-cover transition-all duration-300 group-hover:scale-105 bg-gray-900 relative"
+                      className="w-full transition-all duration-300 group-hover:scale-105 bg-gray-900 relative"
                       style={{
                         opacity: 1,
                         zIndex: 2,
                         position: 'relative',
                         background: 'transparent',
+                        display: 'block', // Ensure proper block display
+                        width: '100%',    // Full width
                       }}
                       onLoad={e => {
                         // Fade out the placeholder when loaded
@@ -226,7 +229,7 @@ const Gallery = () => {
                       }}
                       onError={e => {
                         const img = e.target as HTMLImageElement;
-                        img.src = `${image.url}?w=200,q_auto:low,f_auto`;
+                        img.src = `${image.url}?w=400,q_auto:low,f_auto`;
                       }}
                     />
                   </div>
