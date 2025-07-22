@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import ProgressiveBackground from "components/ProgressiveBackground";
 import Header from "components/Header";
 import SponsorshipForm from "components/SponsorshipForm";
 import SponsorWall from "components/SponsorWall";
@@ -77,14 +78,13 @@ const Home = () => {
             ? useTransform(scrollYProgress, [0, sections.hero[1]], [1, 1.25])
             : 1;
           return (
-            <motion.div
+            <ProgressiveBackground
               key={src}
+              src={src}
               className="absolute inset-0 z-0 bg-center bg-no-repeat bg-cover"
-              style={{
-                backgroundImage: `url(${src})`,
-                opacity: finalOpacity,
-                scale,
-              }}
+              initialOpacity={initialOpacity}
+              finalOpacity={finalOpacity}
+              scale={scale}
             />
           );
         })}
