@@ -67,8 +67,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/60">
-          © {new Date().getFullYear()} GTU Motorsports. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-white/10 text-center">
+          <div className="flex flex-col items-center mb-4">
+              <span className="font-orbitron text-2xl text-orange-500 font-black tracking-[0.2em] mb-1 leading-none">AGAINST</span>
+              <span className="font-orbitron text-xl text-white font-black tracking-[0.15em] leading-none">ALL ODDS</span>
+          </div>
+          <div className="text-sm text-white/60">
+            © {new Date().getFullYear()} GTU Motorsports. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
