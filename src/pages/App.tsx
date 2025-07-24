@@ -36,6 +36,22 @@ const Home = () => {
     exit: [0.8, 1]        // Exit animation
   };
 
+  // Precompute transforms for all images
+  const totalImages = images.length;
+  const finalOpacities = images.map((_, i) =>
+    useTransform(
+      scrollYProgress,
+      [i / totalImages, i / totalImages + 0.01, (i + 1) / totalImages - 0.05, (i + 1) / totalImages],
+      [i === 0 ? 1 : 0, 1, 1, 0]
+    )
+  );
+
+  const scales = images.map((_, i) =>
+    i === 0
+      ? useTransform(scrollYProgress, [0, sections.hero[1]], [1, 1.25])
+      : 1
+  );
+
   // Hero content animations
   const contentOpacity = useTransform(scrollYProgress, 
     [sections.hero[0], sections.hero[1]], 
@@ -114,31 +130,16 @@ const Home = () => {
             {/* HERO SECTION */}
             <section ref={targetRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
         {/* Background Images */}
-        {images.map((src, i) => {
-          const totalImages = images.length;
-          const start = i / totalImages;
-          const end = (i + 1) / totalImages;
-          const initialOpacity = i === 0 ? 1 : 0;
-          const finalOpacity = useTransform(
-            scrollYProgress,
-            [start, start + 0.01, end - 0.05, end],
-            [initialOpacity, 1, 1, 0]
-          );
-          // Only animate scale for the hero section (first image)
-          const scale = i === 0
-            ? useTransform(scrollYProgress, [0, sections.hero[1]], [1, 1.25])
-            : 1;
-          return (
-            <ProgressiveBackground
-              key={src}
-              src={src}
-              className="absolute inset-0 z-0 bg-center bg-no-repeat bg-cover"
-              initialOpacity={initialOpacity}
-              finalOpacity={finalOpacity}
-              scale={scale}
-            />
-          );
-        })}
+        {images.map((src, i) => (
+          <ProgressiveBackground
+            key={src}
+            src={src}
+            className="absolute inset-0 z-0 bg-center bg-no-repeat bg-cover"
+            initialOpacity={i === 0 ? 1 : 0}
+            finalOpacity={finalOpacities[i]}
+            scale={scales[i]}
+          />
+        ))}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         {/* Logo Section */}
         <div className="absolute z-20 w-full h-full flex flex-col items-center justify-start pt-8 sm:pt-12">
