@@ -18,69 +18,65 @@ const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-black via-zinc-900 to-black z-50 flex items-center justify-center">
       <div className="relative">
-        {/* Racing stripe animation */}
+        {/* Pulsing energy ring */}
         <motion.div
-          initial={{ x: '-100%' }}
-          animate={{ x: '100%' }}
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute inset-[-50px] bg-gradient-to-r from-orange-500/20 via-orange-400/20 to-orange-500/20 rounded-full blur-2xl"
+        />
+        
+        {/* Electric charge effect */}
+        <motion.div
+          animate={{
+            opacity: [0, 0.5, 0],
+            scale: [0.8, 1.1, 0.8],
+          }}
           transition={{
             duration: 1.5,
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-1/2 left-[-150px] w-[300px] h-[3px] bg-gradient-to-r from-transparent via-orange-500 to-transparent blur-[2px] transform -translate-y-1/2"
+          className="absolute inset-[-25px] bg-gradient-to-br from-orange-400/30 to-transparent rounded-full blur-md"
         />
-        
-        {/* Logo container with glow effect */}
+
+        {/* Logo with glow */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-orange-500/20 blur-2xl rounded-full" />
+          <div className="absolute inset-0 bg-orange-500/30 rounded-full blur-2xl transform scale-110" />
           <img
             src="/logos/gtmslogo.webp"
             alt="GTU Motorsports Logo"
-            className="w-32 h-32 object-contain relative z-10"
+            className="w-40 h-40 object-contain relative z-10 transform hover:scale-105 transition-transform duration-300"
           />
         </motion.div>
 
-        {/* Loading text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-center mt-6"
-        >
-          <h2 className="text-white font-orbitron text-xl">
-            <motion.span
-              animate={{ opacity: [1, 0.5, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              FIRING UP ENGINES
-            </motion.span>
-          </h2>
-        </motion.div>
-
-        {/* Speed lines decoration */}
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: [0, 1, 0], x: 50 }}
-            transition={{
-              duration: 0.8,
-              delay: i * 0.2,
-              repeat: Infinity,
-              repeatDelay: 1
-            }}
-            className="absolute left-1/2 h-[1px] w-20 bg-orange-500/30"
-            style={{
-              top: `${45 + i * 10}%`,
-              transform: 'translateX(-50%) rotate(-45deg)'
-            }}
-          />
-        ))}
+        {/* Loading progress circles */}
+        <div className="absolute bottom-[-40px] left-1/2 transform -translate-x-1/2 flex gap-2">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                delay: i * 0.3,
+                ease: "easeInOut"
+              }}
+              className="w-2 h-2 bg-orange-500 rounded-full"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
