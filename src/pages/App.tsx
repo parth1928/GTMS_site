@@ -112,7 +112,7 @@ const Home = () => {
           >
             <Header />
             {/* HERO SECTION */}
-            <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
+            <section ref={targetRef} className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
         {/* Background Images */}
         {images.map((src, i) => {
           const totalImages = images.length;
