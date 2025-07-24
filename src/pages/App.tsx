@@ -78,9 +78,10 @@ const Home = () => {
 
   // Preload images
   useEffect(() => {
-    const preloadImages = async () => {
+    const preloadInitialImages = async () => {
       try {
-        const imagePromises = [logoUrl, ...images].map((src) => {
+        // Only wait for logo and first image
+        const initialImagePromises = [logoUrl, images[0]].map((src) => {
           return new Promise((resolve, reject) => {
             const img = new Image();
             img.src = src;
@@ -92,20 +93,29 @@ const Home = () => {
           });
         });
 
-        await Promise.all(imagePromises);
+        // Start loading other images in the background
+        const otherImages = images.slice(1);
+        otherImages.forEach(src => {
+          const img = new Image();
+          img.src = src;
+          img.onerror = (err) => console.error(`Failed to load background image: ${src}`, err);
+        });
+
+        // Wait only for initial images
+        await Promise.all(initialImagePromises);
         // Add a minimum loading time of 1.5 seconds for the animation
         setTimeout(() => {
           setIsLoading(false);
         }, 1500);
       } catch (error) {
-        console.error('Error preloading images:', error);
+        console.error('Error preloading initial images:', error);
         setLoadingError(true);
         // Still hide loading screen after error, but without delay
         setIsLoading(false);
       }
     };
 
-    preloadImages();
+    preloadInitialImages();
 
     // Cleanup function
     return () => {
