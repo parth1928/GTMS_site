@@ -78,44 +78,42 @@ const Home = () => {
 
   // Preload images
   useEffect(() => {
-    const preloadInitialImages = async () => {
+    const preloadMainImage = async () => {
       try {
-        // Only wait for logo and first image
-        const initialImagePromises = [logoUrl, images[0]].map((src) => {
-          return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = src;
-            img.onload = resolve;
-            img.onerror = (err) => {
-              console.error(`Failed to load image: ${src}`, err);
-              reject(err);
-            };
-          });
+        const mainImage = "/images_home_page/1751911608043-328-86179948_513199829629663_7543422456929714176_n.png";
+        
+        // Only wait for the main image
+        await new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = mainImage;
+          img.onload = resolve;
+          img.onerror = (err) => {
+            console.error(`Failed to load main image: ${mainImage}`, err);
+            reject(err);
+          };
         });
 
         // Start loading other images in the background
-        const otherImages = images.slice(1);
+        const otherImages = images.filter(src => src !== mainImage);
         otherImages.forEach(src => {
           const img = new Image();
           img.src = src;
           img.onerror = (err) => console.error(`Failed to load background image: ${src}`, err);
         });
 
-        // Wait only for initial images
-        await Promise.all(initialImagePromises);
         // Add a minimum loading time of 1.5 seconds for the animation
         setTimeout(() => {
           setIsLoading(false);
         }, 1500);
       } catch (error) {
-        console.error('Error preloading initial images:', error);
+        console.error('Error preloading main image:', error);
         setLoadingError(true);
         // Still hide loading screen after error, but without delay
         setIsLoading(false);
       }
     };
 
-    preloadInitialImages();
+    preloadMainImage();
 
     // Cleanup function
     return () => {
