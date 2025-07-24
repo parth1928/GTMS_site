@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
 import ProgressiveBackground from "components/ProgressiveBackground";
 import Header from "components/Header";
@@ -8,8 +8,11 @@ import SponsorshipForm from "components/SponsorshipForm";
 import SponsorWall from "components/SponsorWall";
 import AchievementsTimeline from "components/AchievementsTimeline";
 import Footer from "components/Footer";
+import LoadingScreen from "components/LoadingScreen";
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingError, setLoadingError] = useState(false);
   const logoUrl = "/logos/gtmslogo.webp";
   const images = [
     "/images_home_page/1751911608043-328-86179948_513199829629663_7543422456929714176_n.png",
@@ -57,11 +60,59 @@ const Home = () => {
     ["25vh", "0vh", "0vh", "0vh", "0vh", "-25vh"]
   );
 
+  // Preload images
+  useEffect(() => {
+    const preloadImages = async () => {
+      try {
+        const imagePromises = [logoUrl, ...images].map((src) => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = resolve;
+            img.onerror = (err) => {
+              console.error(`Failed to load image: ${src}`, err);
+              reject(err);
+            };
+          });
+        });
+
+        await Promise.all(imagePromises);
+        // Add a minimum loading time of 1.5 seconds for the animation
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setLoadingError(true);
+        // Still hide loading screen after error, but without delay
+        setIsLoading(false);
+      }
+    };
+
+    preloadImages();
+
+    // Cleanup function
+    return () => {
+      setIsLoading(false);
+      setLoadingError(false);
+    };
+  }, []);
+
   return (
     <>
-      <Header />
-      {/* HERO SECTION */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <LoadingScreen key="loading" />
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Header />
+            {/* HERO SECTION */}
+            <section className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
         {/* Background Images */}
         {images.map((src, i) => {
           const totalImages = images.length;
@@ -171,9 +222,12 @@ const Home = () => {
           <AchievementsTimeline />
         </div>
       </section>
-      <SponsorWall />
-      <SponsorshipForm />
-      <Footer />
+              <SponsorWall />
+              <SponsorshipForm />
+              <Footer />
+            </motion.div>
+          )}
+      </AnimatePresence>
     </>
   );
 };
