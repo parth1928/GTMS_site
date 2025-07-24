@@ -22,7 +22,7 @@ const Home = () => {
     "/images_home_page/1751911405063-367-48379285_217554835860832_105493102688468992_n.png",
   ];
 
-  const targetRef = useRef(null);
+  const targetRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"],
