@@ -152,7 +152,7 @@ const Home = () => {
         
         {/* Corner Logos */}
         <motion.div 
-          className="absolute top-8 left-8 z-20 w-32 md:w-40 cursor-pointer"
+          className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-20 w-20 sm:w-28 md:w-36 lg:w-40 cursor-pointer"
           style={{ opacity: contentOpacity }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -173,7 +173,7 @@ const Home = () => {
         </motion.div>
         
         <motion.div 
-          className="absolute top-8 right-8 z-20 w-40 md:w-52 lg:w-64 cursor-pointer"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 w-24 sm:w-36 md:w-48 lg:w-56 cursor-pointer"
           style={{ opacity: contentOpacity }}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
