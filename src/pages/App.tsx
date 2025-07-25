@@ -15,11 +15,11 @@ const Home = () => {
   const [loadingError, setLoadingError] = useState(false);
   const logoUrl = "/logos/gtmslogo.webp";
   const images = [
-    "/images_home_page/1751911608043-328-86179948_513199829629663_7543422456929714176_n.png",
-    "/images_home_page/1751911514343-537-82000289_492478235035156_2741253328959700992_n.png",
+    "/images_home_page/1751911608043-328-86179948_513199829629663_7543422456929714176_n.webp",
     "/images_home_page/IMG_2670.jpg",
     "/images_home_page/IMG_0877.jpg",
-    "/images_home_page/1751911405063-367-48379285_217554835860832_105493102688468992_n.png",
+    "/images_home_page/_MG_4241.JPG",
+    "/images_home_page/GTU-Motorsports.jpg",
   ];
 
   const targetRef = useRef<HTMLElement>(null);
@@ -80,7 +80,7 @@ const Home = () => {
   useEffect(() => {
     const preloadMainImage = async () => {
       try {
-        const mainImage = "/images_home_page/1751911608043-328-86179948_513199829629663_7543422456929714176_n.png";
+        const mainImage = "/images_home_page/1751911608043-328-86179948_513199829629663_7543422456929714176_n.webp";
         
         // Only wait for the main image
         await new Promise((resolve, reject) => {
