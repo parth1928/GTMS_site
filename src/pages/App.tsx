@@ -149,6 +149,50 @@ const Home = () => {
           />
         ))}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        
+        {/* Corner Logos */}
+        <motion.div 
+          className="absolute top-8 left-8 z-20 w-32 md:w-40 cursor-pointer"
+          style={{ opacity: contentOpacity }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <a 
+            href="https://www.gtu.ac.in/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block transform hover:scale-105 transition-transform"
+          >
+            <img 
+              src="/logos/newgtulogo.png" 
+              alt="GTU Logo" 
+              className="w-full h-auto"
+            />
+          </a>
+        </motion.div>
+        
+        <motion.div 
+          className="absolute top-8 right-8 z-20 w-40 md:w-52 lg:w-64 cursor-pointer"
+          style={{ opacity: contentOpacity }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <a 
+            href="https://gtuventures.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block transform hover:scale-105 transition-transform"
+          >
+            <img 
+              src="/logos/gtuventures.svg" 
+              alt="GTU Ventures Logo" 
+              className="w-full h-auto"
+            />
+          </a>
+        </motion.div>
+
         {/* Logo Section */}
         <div className="absolute z-20 w-full h-full flex flex-col items-center justify-start pt-8 sm:pt-12">
           {/* Logo and Tagline Container */}
