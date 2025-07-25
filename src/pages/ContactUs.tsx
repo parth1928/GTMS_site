@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import PageLayout from "components/PageLayout";
 import { FaInstagram, FaLinkedin, FaFacebookF, FaYoutube, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 
 interface FormData {
@@ -79,11 +78,9 @@ const ContactUs = () => {
   };
 
   return (
-    <>
-      <Header />
-      <div className="min-h-screen bg-black">
+    <PageLayout>
         {/* Hero Section */}
-        <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[40vh] sm:h-[50vh] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ 
@@ -94,18 +91,18 @@ const ContactUs = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60" />
           <div className="relative z-10 text-center text-white">
-            <h1 className="text-6xl font-extrabold tracking-tight uppercase font-orbitron mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight uppercase font-orbitron mb-4 px-4">
               Contact Us
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 font-outfit max-w-2xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 font-outfit max-w-2xl mx-auto px-4">
               Get in touch with GTU Motorsports for opportunities, sponsorship, or technical inquiries
             </p>
           </div>
         </section>
 
         {/* Contact Form and Info Section */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <section className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -305,9 +302,7 @@ const ContactUs = () => {
             </motion.div>
           </div>
         </section>
-      </div>
-      <Footer />
-    </>
+    </PageLayout>
   );
 };
 
