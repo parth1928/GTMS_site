@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Header from "components/Header";
-import Footer from "components/Footer";
 import { FiX } from "react-icons/fi";
 import Masonry from 'react-masonry-css';
+import PageLayout from "components/PageLayout";
 
 interface GalleryImage {
   name: string;
@@ -146,19 +145,18 @@ const Gallery = () => {
 
 
   return (
-    <>
-      <Header />
-      <div className="min-h-screen bg-black">
+    <PageLayout>
         {/* Hero Section */}
-        <section className="relative h-[40vh] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
-              backgroundImage: 'url("/images_home_page/_MG_4219.JPG")',
-              filter: 'brightness(0.5)'
+              backgroundImage: 'url("/images_home_page/IMG_2649.jpg")',
+              filter: 'brightness(0.7)',
+              backgroundPosition: 'center 30%'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black" />
           <div className="relative z-10 text-center text-white">
             <h1 className="text-6xl font-extrabold tracking-tight uppercase font-orbitron mb-4">
               Our Gallery
@@ -341,9 +339,7 @@ const Gallery = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-      <Footer />
-    </>
+    </PageLayout>
   );
 };
 

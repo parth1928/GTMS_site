@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import PageLayout from "components/PageLayout";
 import SponsorshipForm from "components/SponsorshipForm";
 
 const Sponsors = () => {
@@ -118,9 +117,7 @@ const Sponsors = () => {
   ];
 
   return (
-    <>
-      <Header />
-      <div className="min-h-screen bg-black">
+    <PageLayout>
         {/* Hero Section */}
         <section className="relative min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden py-20 sm:py-24">
           <div 
@@ -198,9 +195,7 @@ const Sponsors = () => {
         </section>
 
         <SponsorshipForm />
-      </div>
-      <Footer />
-    </>
+    </PageLayout>
   );
 };
 

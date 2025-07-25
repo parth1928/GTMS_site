@@ -27,6 +27,14 @@ const Header = () => {
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
+  // Update headerStyle based on hover state
+  const getBackgroundOpacity = () => {
+    if (isHomePage) {
+      return (visible || isOpen) ? "0.95" : "0";
+    }
+    return isHovered ? "0.4" : "0.25";
+  };
+
   useEffect(() => {
     if (location.pathname === '/' && location.state?.scrollToContact) {
       setTimeout(() => {
@@ -48,11 +56,11 @@ const Header = () => {
   });
 
   const headerStyle = {
-    background: (visible || isOpen || (isHovered && !isHomePage)) ? "rgba(10, 10, 10, 0.95)" : "transparent",
-    backdropFilter: "blur(12px)",
-    WebkitBackdropFilter: "blur(12px)",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-    transition: "background-color 0.3s ease",
+    background: `rgba(10, 10, 10, ${getBackgroundOpacity()})`,
+    backdropFilter: !isHomePage || visible || isOpen ? "blur(12px)" : "none",
+    WebkitBackdropFilter: !isHomePage || visible || isOpen ? "blur(12px)" : "none",
+    borderBottom: !isHomePage ? "1px solid rgba(255, 255, 255, 0.1)" : (visible || isOpen ? "1px solid rgba(255, 255, 255, 0.1)" : "none"),
+    transition: "all 0.3s ease",
   };
 
   return (
@@ -62,9 +70,9 @@ const Header = () => {
         style={headerStyle}
         variants={{
           visible: { y: 0, opacity: 1 },
-          hidden: { y: isHomePage ? "-100%" : 0, opacity: (visible || (!isHomePage && isHovered)) ? 1 : 0 },
+          hidden: { y: isHomePage ? "-100%" : 0, opacity: isHomePage ? 0 : 1 },
         }}
-        animate={visible || (!isHomePage && isHovered) ? "visible" : "hidden"}
+        animate={visible || !isHomePage ? "visible" : "hidden"}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         onMouseEnter={() => !isHomePage && setIsHovered(true)}
         onMouseLeave={() => !isHomePage && setIsHovered(false)}
