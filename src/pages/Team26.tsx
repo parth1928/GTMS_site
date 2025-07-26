@@ -4,21 +4,20 @@ import Footer from "components/Footer";
 
 
 const teamMembers = [
+  
   { name: "Rohan Manna", role: "Captain", linkedin: "https://www.linkedin.com/in/rohanmanna31?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", img: "/team/rohan_manna.jpg" },
+  { name: "Vraj Lakkad", role: "Team Manager", linkedin: "https://www.linkedin.com/in/vraj-lakkad-54966a277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/VRAJ.jpg" },
   { name: "Divang Mandal", role: "VD Head", linkedin: "https://www.linkedin.com/in/divang-mandal-5239a321a", img: "/team/Divang-Mandal.jpg" },
   { name: "Nairitya Tarnekar", role: "Chassis Head", linkedin: "https://www.linkedin.com/in/nairitya-tarnekar-798655287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Nairitya-Tarnekar.jpg" },
   { name: "Vaibhav Thakkar", role: "EV PWT Head", linkedin: "https://www.linkedin.com/in/thakkar-vaibhav?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/vaibhav.jpg" },
   { name: "Parth Dalal", role: "Chassis", linkedin: "https://www.linkedin.com/in/parth-dalal-988258248?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/parth-dalal.jpg" },
-
-  { name: "Vraj Lakkad", role: "Chassis", linkedin: "https://www.linkedin.com/in/vraj-lakkad-54966a277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/VRAJ.jpg" },
   { name: "Swastik Shukla", role: "Chassis", linkedin: "https://www.linkedin.com/in/swastik-shukla-b7673b327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/swastik.jpg" }, 
   { name: "Parth Oza", role: "EV PWT", linkedin: "https://www.linkedin.com/in/parth-oza-7904b8228/", img: "/team/Parth-oza.jpg" },
   { name: "Prit Mevada", role: "EV PWT", linkedin: "https://www.linkedin.com/in/prit-mevada-0aab572b3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Prit.jpg" },
   { name: "Shlok Bhatt", role: "EV PWT", linkedin: "https://www.linkedin.com/in/shlok-bhatt-b6056a248?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/shlok.jpg" },
   { name: "Harsh Chavda", role: "EV PWT", linkedin: "https://www.linkedin.com/in/harsh-chavda-410460251?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/harsh.jpg" },
   { name: "Hem Vadgama", role: "EV PWT", linkedin: "https://www.linkedin.com/in/hem-vadgama-795456376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Hem.jpg" },
-    { name: "Srujan Ubbalapelli", role: "EV PWT", linkedin: "https://www.linkedin.com/in/srujan-ubbalapelli-111b16301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/srujanjpg.jpg" },
-  
+  { name: "Srujan Ubbalapelli", role: "EV PWT", linkedin: "https://www.linkedin.com/in/srujan-ubbalapelli-111b16301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/srujanjpg.jpg" },
   { name: "Dhruvit Gohel", role: "VD", linkedin: "https://www.linkedin.com/in/dhruvit-gohel-74661330a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Dhruvit-Gohel.jpg" },
   { name: "Dev Panchal", role: "VD", linkedin: "https://www.linkedin.com/in/dev-panchal-249a41359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/dev-panchal.jpg" },
   { name: "Samir Panchal", role: "VD", linkedin: "https://www.linkedin.com/in/samir-panchal-1bb77b270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/samir.jpg" },

@@ -157,19 +157,35 @@ const Home = () => {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
+          whileHover={{ scale: 1.07 }}
         >
-          <a 
-            href="https://www.gtu.ac.in/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transform hover:scale-105 transition-transform"
-          >
-            <img 
-              src="/logos/newgtulogo.png" 
-              alt="GTU Logo" 
-              className="w-full h-auto"
-            />
-          </a>
+          <div className="relative flex items-center justify-center w-full h-full">
+            {/* 3D Gradient Ring */}
+            <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+              background: 'conic-gradient(from 180deg at 50% 50%, #ffb86c 0deg, #ff6b6b 90deg, #5eead4 180deg, #6366f1 270deg, #ffb86c 360deg)',
+              filter: 'blur(8px) opacity(0.5)',
+            }} />
+            {/* Glassmorphism Card */}
+            <div className="relative bg-white/30 backdrop-blur-xl border border-white/40 shadow-2xl rounded-full flex items-center justify-center w-full h-full overflow-hidden" style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25), 0 0 0 4px rgba(255,255,255,0.15) inset' }}>
+              <a 
+                href="https://www.gtu.ac.in/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block transform transition-transform"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
+              >
+                <motion.img 
+                  src="/logos/newgtulogo.png" 
+                  alt="GTU Logo" 
+                  className="w-full h-full object-contain rounded-full m-0 p-0 border-0 drop-shadow-[0_4px_24px_rgba(30,64,175,0.18)]"
+                  style={{ display: 'block' }}
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                />
+              </a>
+            </div>
+          </div>
         </motion.div>
         
         <motion.div 
@@ -178,19 +194,35 @@ const Home = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
+          whileHover={{ scale: 1.07 }}
         >
-          <a 
-            href="https://gtuventures.com/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transform hover:scale-105 transition-transform"
-          >
-            <img 
-              src="/logos/gtuventures.svg" 
-              alt="GTU Ventures Logo" 
-              className="w-full h-auto"
-            />
-          </a>
+          <div className="relative flex items-center justify-center w-full h-full">
+            {/* 3D Gradient Ring */}
+            <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+              background: 'conic-gradient(from 180deg at 50% 50%, #5eead4 0deg, #6366f1 90deg, #ffb86c 180deg, #ff6b6b 270deg, #5eead4 360deg)',
+              filter: 'blur(8px) opacity(0.5)',
+            }} />
+            {/* Glassmorphism Card */}
+            <div className="relative bg-white/30 backdrop-blur-xl border border-white/40 shadow-2xl rounded-full flex items-center justify-center w-full h-full overflow-hidden" style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25), 0 0 0 4px rgba(255,255,255,0.15) inset' }}>
+              <a 
+                href="https://gtuventures.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block transform transition-transform"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
+              >
+                <motion.img 
+                  src="/logos/gtuventures.svg" 
+                  alt="GTU Ventures Logo" 
+                  className="w-full h-full object-contain rounded-full m-0 p-0 border-0 drop-shadow-[0_4px_24px_rgba(234,88,12,0.18)]"
+                  style={{ display: 'block' }}
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                />
+              </a>
+            </div>
+          </div>
         </motion.div>
 
         {/* Logo Section */}
@@ -276,7 +308,6 @@ const Home = () => {
         </div>
       </section>
               <SponsorWall />
-              <SponsorshipForm />
               <Footer />
             </motion.div>
           )}
