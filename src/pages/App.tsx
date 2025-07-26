@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import ProgressiveBackground from "components/ProgressiveBackground";
 import Header from "components/Header";
 import SupportForm from "components/SupportForm";
@@ -11,6 +12,7 @@ import Footer from "components/Footer";
 import LoadingScreen from "components/LoadingScreen";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [loadingError, setLoadingError] = useState(false);
   const logoUrl = "/logos/gtmslogo.webp";
@@ -259,13 +261,11 @@ const Home = () => {
               </p>
               <div className="flex flex-col mt-6 sm:mt-12 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 justify-center w-full">
                 <motion.a 
-                  href="#contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-full sm:w-[250px]"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  onClick={() => {
+                    navigate('/supporters', { state: { scrollToForm: true } });
                   }}
                 >
                   <Button

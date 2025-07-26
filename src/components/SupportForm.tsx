@@ -5,26 +5,26 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const whySponsorPoints = [
+const whyJoinPoints = [
   "National Champions – Formula Bharat, Supra SAE",
   "Recognized Among Top 50 in Global Formula Student Rankings",
   "Proven Track Record – Dominant in endurance, design, and efficiency",
   "Massive Media Reach – Featured by Car News, ShutterDrives, and more"
 ];
 
-const SponsorshipForm = () => {
+const SupportForm = () => {
   return (
-    <div id="contact" className="w-full py-12 sm:py-16 md:py-20 bg-black text-white">
+    <div id="support-form" className="w-full py-12 sm:py-16 md:py-20 bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 grid md:grid-cols-2 gap-8 md:gap-12 items-start">
-        {/* Left Column: Why Sponsor Us? */}
+        {/* Left Column: Why Join Us? */}
         <div className="space-y-6 sm:space-y-8">
           <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-4 text-center sm:text-left">
             <h2 className="text-3xl sm:text-4xl font-bold font-orbitron leading-tight">
-              BECOME A PART OF THE LEGACY
+              BE PART OF OUR LEGACY
             </h2>
             <motion.a
-              href="/brochure/GTU_Motorsports_Sponsorship_2025.pdf"
-              download="GTU_Motorsports_Sponsorship_2025.pdf"
+              href="/brochure/GTU_Motorsports_Partnership_2025.pdf"
+              download="GTU_Motorsports_Partnership_2025.pdf"
               type="application/pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -45,7 +45,7 @@ const SponsorshipForm = () => {
             </p>
           </div>
           <ul className="space-y-3 sm:space-y-4 max-w-2xl mx-auto sm:mx-0">
-            {whySponsorPoints.map((point) => (
+            {whyJoinPoints.map((point) => (
               <li key={point} className="flex items-center text-sm sm:text-base">
                 <CheckCircle2 className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 mr-3 text-orange-500" />
                 <span className="font-outfit">{point}</span>
@@ -53,10 +53,10 @@ const SponsorshipForm = () => {
             ))}
           </ul>
           <p className="font-outfit text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto sm:mx-0 text-center sm:text-left">
-            By partnering with us, your brand aligns with high-performance engineering, innovation, and future-ready talent. Together, let's push the boundaries of what's possible — on and off the track.
+            Whether as a supporter or sponsor, your partnership aligns with high-performance engineering, innovation, and future-ready talent. Together, let's push the boundaries of what's possible — on and off the track.
           </p>
           <p className="text-base sm:text-lg font-orbitron text-orange-500 text-center sm:text-left">
-            Fuel the drive. Shape the future. Become part of the GTU Motorsports legacy.
+            Drive innovation. Shape the future. Join the GTU Motorsports journey.
           </p>
         </div>
 
@@ -69,9 +69,9 @@ const SponsorshipForm = () => {
           >
             <input type="hidden" name="_next" value="https://gtumotorsports.live/thank-you" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="New Sponsorship Inquiry!" />
+            <input type="hidden" name="_subject" value="New Support/Sponsorship Inquiry!" />
             
-            <h3 className="text-xl sm:text-2xl font-bold font-orbitron mb-6">Sponsorship Inquiry</h3>
+            <h3 className="text-xl sm:text-2xl font-bold font-orbitron mb-6">Support/Sponsorship Inquiry</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div className="space-y-1.5 sm:space-y-2">
                 <Label htmlFor="name" className="text-sm sm:text-base">Name</Label>
@@ -140,4 +140,4 @@ const SponsorshipForm = () => {
   );
 };
 
-export default SponsorshipForm;
+export default SupportForm;

@@ -36,9 +36,9 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (location.pathname === '/' && location.state?.scrollToContact) {
+    if (location.pathname === '/supporters' && location.state?.scrollToForm) {
       setTimeout(() => {
-        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('support-form')?.scrollIntoView({ behavior: 'smooth' });
       }, 100);
       // Clear the state
       window.history.replaceState({}, document.title);
@@ -117,10 +117,10 @@ const Header = () => {
           <Button 
             className="hidden lg:flex px-6 h-12 text-sm font-bold text-white uppercase transition-all duration-300 transform bg-orange-600 rounded-none hover:bg-orange-500 hover:scale-105 items-center justify-center"
             onClick={() => {
-              if (location.pathname === '/') {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              if (location.pathname === '/supporters') {
+                document.getElementById('support-form')?.scrollIntoView({ behavior: 'smooth' });
               } else {
-                navigate('/', { replace: true, state: { scrollToContact: true } });
+                navigate('/supporters', { replace: true, state: { scrollToForm: true } });
               }
             }}
           >
@@ -191,10 +191,10 @@ const Header = () => {
                   <Button
                     onClick={() => {
                       setIsOpen(false);
-                      if (location.pathname === '/') {
-                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      if (location.pathname === '/supporters') {
+                        document.getElementById('support-form')?.scrollIntoView({ behavior: 'smooth' });
                       } else {
-                        navigate('/', { replace: true, state: { scrollToContact: true } });
+                        navigate('/supporters', { replace: true, state: { scrollToForm: true } });
                       }
                     }}
                     className="mt-6 px-8 py-6 text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 hover:bg-orange-500 rounded-none w-full"

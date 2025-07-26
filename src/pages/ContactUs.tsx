@@ -7,7 +7,7 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
-  purpose: "join" | "sponsor" | "technical" | "";
+  purpose: "join" | "support" | "technical" | "general" | "";
   message: string;
 }
 
@@ -67,13 +67,17 @@ const ContactUs = () => {
       title: "Join Our Team",
       description: "Become part of our dynamic racing team and contribute to engineering excellence."
     },
-    sponsor: {
-      title: "Become a Sponsor",
-      description: "Partner with us and support the future of motorsport engineering."
+    support: {
+      title: "Sponsorship & Support",
+      description: "Partner with us and support the future of motorsport engineering through sponsorship or other means of support."
     },
     technical: {
       title: "Technical Support",
       description: "Need technical assistance or have engineering queries? We're here to help."
+    },
+    general: {
+      title: "General Inquiry",
+      description: "Have questions about our team, events, or any other topic? Feel free to ask."
     }
   };
 
@@ -127,8 +131,9 @@ const ContactUs = () => {
                   >
                     <option value="" className="bg-gray-900">Select Purpose</option>
                     <option value="join" className="bg-gray-900">Join the Team</option>
-                    <option value="sponsor" className="bg-gray-900">Sponsorship</option>
+                    <option value="support" className="bg-gray-900">Sponsorship/Support</option>
                     <option value="technical" className="bg-gray-900">Technical Support</option>
+                    <option value="general" className="bg-gray-900">General Inquiry</option>
                   </select>
                 </div>
 

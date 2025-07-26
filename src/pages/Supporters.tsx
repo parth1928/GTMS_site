@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import PageLayout from "components/PageLayout";
 import SupportForm from "components/SupportForm";
 
 const Supporters = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollToForm) {
+      setTimeout(() => {
+        document.getElementById('support-form')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      // Clear the state
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
+
   // Get all supporter logos from the logos folder
   interface SupporterLogo {
     name: string;
