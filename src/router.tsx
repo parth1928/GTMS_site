@@ -10,7 +10,7 @@ const App = lazy(() => import("./pages/App"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Team26 = lazy(() => import("./pages/Team26"));
 const Gallery = lazy(() => import("./pages/Gallery"));
-const Sponsors = lazy(() => import("./pages/Sponsors"));
+const Supporters = lazy(() => import("./pages/Supporters"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const ThankYou = lazy(() => import("./pages/ThankYou"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
@@ -61,11 +61,11 @@ export const router = createBrowserRouter(
       )
     },
     {
-      path: "/sponsors",
+      path: "/supporters",
       element: (
         <AppProvider>
           <SuspenseWrapper>
-            <Sponsors />
+            <Supporters />
           </SuspenseWrapper>
         </AppProvider>
       )

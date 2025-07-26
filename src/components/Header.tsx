@@ -12,7 +12,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Team-26", href: "/team26" },
-  { name: "Sponsors", href: "/sponsors" },
+  { name: "Supporters", href: "/supporters" },
   { name: "Gallery", href: "/gallery" },
   { name: "Contact", href: "/contact" },
 ];
@@ -124,7 +124,7 @@ const Header = () => {
               }
             }}
           >
-            Become a Sponsor
+            Become a Supporter
           </Button>
 
           {/* Hamburger Menu Button */}
@@ -199,7 +199,7 @@ const Header = () => {
                     }}
                     className="mt-6 px-8 py-6 text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 hover:bg-orange-500 rounded-none w-full"
                   >
-                    Become a Sponsor
+                    Become a Supporter
                   </Button>
                 </motion.li>
               </ul>

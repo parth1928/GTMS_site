@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 
-interface Sponsor {
+interface Supporter {
   name: string;
   logo: string;
   scale?: number;
 }
 
-interface SponsorWithLink extends Sponsor {
+interface SupporterWithLink extends Supporter {
   link?: string;
 }
 
-const sponsors: SponsorWithLink[] = [
+const supporters: SupporterWithLink[] = [
   { 
     name: "VI-grade", 
     logo: "/logos/vi-grade_red (1).svg",
@@ -114,20 +114,20 @@ const sponsors: SponsorWithLink[] = [
   { name: "Partner 4", logo: "/logos/images (1).png" }
 ];
 
-const SponsorWall = () => {
+const SupporterWall = () => {
   return (
-    <div id="sponsors" className="w-full py-12 sm:py-16 md:py-20 bg-black">
+    <div id="supporters" className="w-full py-12 sm:py-16 md:py-20 bg-black">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-white font-orbitron mb-3 sm:mb-4">
           OUR LEGACY OF PARTNERSHIPS
         </h2>
         <p className="text-gray-400 font-outfit mb-8 sm:mb-12 max-w-2xl mx-auto text-sm sm:text-base px-4">
-          We are proud to have been supported by these industry leaders throughout our journey. Their trust and support have been instrumental in our achievements since 2015.
+          We are proud to have been supported by these industry leaders throughout our journey. Their trust and partnership have been instrumental in our achievements since 2015.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8 lg:gap-12 px-2 sm:px-4 md:px-6">
-          {sponsors.map((sponsor) => (
+          {supporters.map((supporter) => (
             <motion.div
-              key={sponsor.name}
+              key={supporter.name}
               className="p-3 sm:p-4 md:p-6 bg-white rounded-lg flex items-center justify-center border border-gray-200 hover:border-orange-500 shadow-md"
               whileHover={{ 
                 scale: 1.02,
@@ -135,32 +135,32 @@ const SponsorWall = () => {
                 transition: { duration: 0.2 }
               }}
             >
-              {sponsor.link ? (
+              {supporter.link ? (
                 <a 
-                  href={sponsor.link} 
+                  href={supporter.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-full h-full flex items-center justify-center"
                 >
                   <motion.img
-                    src={sponsor.logo}
-                    alt={sponsor.name}
+                    src={supporter.logo}
+                    alt={supporter.name}
                     className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:brightness-105"
-                    style={{ transform: `scale(${sponsor.scale || 1})` }}
+                    style={{ transform: `scale(${supporter.scale || 1})` }}
                     whileHover={{ 
-                      scale: (sponsor.scale || 1) * 1.05,
+                      scale: (supporter.scale || 1) * 1.05,
                       transition: { duration: 0.2 }
                     }}
                   />
                 </a>
               ) : (
                 <motion.img
-                  src={sponsor.logo}
-                  alt={sponsor.name}
+                  src={supporter.logo}
+                  alt={supporter.name}
                   className="h-8 sm:h-12 md:h-16 w-auto object-contain hover:brightness-105"
-                  style={{ transform: `scale(${sponsor.scale || 1})` }}
+                  style={{ transform: `scale(${supporter.scale || 1})` }}
                   whileHover={{ 
-                    scale: (sponsor.scale || 1) * 1.05,
+                    scale: (supporter.scale || 1) * 1.05,
                     transition: { duration: 0.2 }
                   }}
                 />
@@ -173,4 +173,4 @@ const SponsorWall = () => {
   );
 };
 
-export default SponsorWall;
+export default SupporterWall;

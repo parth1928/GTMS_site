@@ -4,8 +4,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useRef } from "react";
 import ProgressiveBackground from "components/ProgressiveBackground";
 import Header from "components/Header";
-import SponsorshipForm from "components/SponsorshipForm";
-import SponsorWall from "components/SponsorWall";
+import SupportForm from "components/SupportForm";
+import SupporterWall from "components/SupporterWall";
 import AchievementsTimeline from "components/AchievementsTimeline";
 import Footer from "components/Footer";
 import LoadingScreen from "components/LoadingScreen";
@@ -272,7 +272,7 @@ const Home = () => {
                     size="lg"
                     className="w-full px-4 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-bold text-white uppercase transition-all duration-300 bg-orange-600 rounded-none hover:bg-orange-500 hover:shadow-[0_0_30px_rgba(234,88,12,0.5)] transform-gpu"
                   >
-                    Become a Sponsor
+                    Become a Supporter
                   </Button>
                 </motion.a>
                 <motion.a
@@ -307,7 +307,7 @@ const Home = () => {
           <AchievementsTimeline />
         </div>
       </section>
-              <SponsorWall />
+              <SupporterWall />
               <Footer />
             </motion.div>
           )}
