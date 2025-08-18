@@ -153,8 +153,9 @@ const Home = () => {
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         
         {/* Corner Logos */}
+        {/* Corner Logos - Keep in corners, prevent overlap with center logo */}
         <motion.div 
-          className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8 z-20 w-20 sm:w-28 md:w-36 lg:w-40 cursor-pointer"
+          className="absolute top-2 left-2 sm:top-6 sm:left-6 md:top-8 md:left-8 z-30 w-16 sm:w-28 md:w-36 lg:w-40 cursor-pointer"
           style={{ opacity: contentOpacity }}
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -189,9 +190,8 @@ const Home = () => {
             </div>
           </div>
         </motion.div>
-        
         <motion.div 
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 w-24 sm:w-36 md:w-48 lg:w-56 cursor-pointer"
+          className="absolute top-2 right-2 sm:top-6 sm:right-6 md:top-8 md:right-8 z-30 w-20 sm:w-36 md:w-48 lg:w-56 cursor-pointer"
           style={{ opacity: contentOpacity }}
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
