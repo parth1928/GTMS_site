@@ -110,34 +110,21 @@ const Gallery = () => {
     loadImages();
   }, []);
 
-  // Cloudinary helper functions
+
+  // ImageKit helper functions
   function getThumbnailUrl(fullUrl: string) {
-    // Maintain aspect ratio while limiting width for thumbnails
-    const transformations = [
-      'w_400',          // max width
-      'c_limit',        // maintain aspect ratio
-      'q_60',           // balanced quality
-      'f_webp',         // force WebP
-      'dpr_1.0',        // force 1x DPR
-      'e_sharpen:60'    // enhance details
-    ].join(',');
-    return `${fullUrl.split('upload/')[0]}upload/${transformations}/${fullUrl.split('upload/')[1]}`;
+    // Balanced quality for gallery thumbnails
+    return `${fullUrl}?tr=w-400,<q-75></q-75>,f-auto,dpr-1`;
   }
-  // For the blur-up placeholder, use ultra-small size with medium blur
+
   function getPlaceholderUrl(fullUrl: string) {
-    const transformations = [
-      'w_40',
-      'c_limit',        // maintain aspect ratio
-      'q_10',
-      'e_blur:400',
-      'f_webp'
-    ].join(',');
-    return `${fullUrl.split('upload/')[0]}upload/${transformations}/${fullUrl.split('upload/')[1]}`;
+    // Tiny blurred placeholder
+    return `${fullUrl}?tr=w-40,q-10,bl-20,f-auto`;
   }
 
   function getFullSizeUrl(fullUrl: string) {
-    // Progressive loading for lightbox view with smart quality
-    return `${fullUrl}?w=1280,h=853,c_fit,q_auto:good,f_auto,fl_progressive`;
+    // For lightbox/full view – high quality, large size
+    return `${fullUrl}?tr=w-1920,q-90,f-auto,dpr-1`;
   }
 
 
