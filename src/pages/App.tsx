@@ -227,8 +227,8 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Logo Section */}
-        <div className="absolute z-20 w-full h-full flex flex-col items-center justify-start pt-8 sm:pt-12">
+  {/* Logo Section */}
+  <div className="absolute z-20 w-full h-full flex flex-col items-center justify-start pt-0 sm:pt-2">
           {/* Logo and Tagline Container */}
           <div className="flex flex-col items-center gap-4 sm:gap-8">
             <div className="relative group">
@@ -248,7 +248,7 @@ const Home = () => {
                 }}
               />
             </div>
-            <div className="text-center text-white px-4 sm:px-8">
+            <div className="text-center text-white px-4 sm:px-8 mt-4 sm:mt-8">
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight uppercase font-orbitron break-words sm:whitespace-nowrap">
                 NO WINGS. NO WORRIES.
               </h1>
