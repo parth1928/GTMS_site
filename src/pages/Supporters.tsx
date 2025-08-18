@@ -26,6 +26,7 @@ const Supporters = () => {
   }
 
   const supporterLogos: SupporterLogo[] = [
+    // ...existing supporters...
     { 
       name: "VI-grade", 
       logo: "/logos/vi-grade_red (1).svg",
@@ -118,15 +119,19 @@ const Supporters = () => {
       logo: "/logos/newlpvt-logo1.png",
       link: "https://www.gajjarindustries.in/"
     },
-    { name: "Aurora", logo: "/logos/cropped-halflogo-aurora.jpeg.jpg" },
-    { name: "Partner 1", logo: "/logos/Screenshot 2025-07-07 174428-Picsart-AiImageEnhancer.png" },
-    { name: "Partner 2", logo: "/logos/Screenshot 2025-07-07 133126-Picsart-AiImageEnhancer.png" },
     { 
       name: "igus", 
       logo: "/logos/images.png",
       link: "https://www.igus.in/"
     },
-    { name: "Partner 4", logo: "/logos/images (1).png" }
+    // Partner 1: Neptune Coating
+    { name: "Neptune Coating", logo: "/logos/Screenshot 2025-07-07 174428-Picsart-AiImageEnhancer.png" },
+    // Partner 2: Welltex
+    { name: "Welltex", logo: "/logos/Screenshot 2025-07-07 133126-Picsart-AiImageEnhancer.png" },
+    // Partner 3: Aurora
+    { name: "Aurora", logo: "/logos/cropped-halflogo-aurora.jpeg.jpg" },
+    // Partner 4: R-CAD
+    { name: "R-CAD", logo: "/logos/images (1).png" }
   ];
 
   return (
