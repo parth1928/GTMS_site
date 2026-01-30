@@ -17,7 +17,6 @@ const teamMembers = [
   { name: "Shlok Bhatt", role: "EV PWT", linkedin: "https://www.linkedin.com/in/shlok-bhatt-b6056a248?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/shlok.jpg" },
   { name: "Harsh Chavda", role: "EV PWT", linkedin: "https://www.linkedin.com/in/harsh-chavda-410460251?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/harsh.jpg" },
   { name: "Hem Vadgama", role: "EV PWT", linkedin: "https://www.linkedin.com/in/hem-vadgama-795456376?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Hem.jpg" },
-  { name: "Srujan Ubbalapelli", role: "EV PWT", linkedin: "https://www.linkedin.com/in/srujan-ubbalapelli-111b16301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/srujanjpg.jpg" },
   { name: "Dhruvit Gohel", role: "VD", linkedin: "https://www.linkedin.com/in/dhruvit-gohel-74661330a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/Dhruvit-Gohel.jpg" },
   { name: "Dev Panchal", role: "VD", linkedin: "https://www.linkedin.com/in/dev-panchal-249a41359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/dev-panchal.jpg" },
   { name: "Samir Panchal", role: "VD", linkedin: "https://www.linkedin.com/in/samir-panchal-1bb77b270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", img: "/team/samir.jpg" },
